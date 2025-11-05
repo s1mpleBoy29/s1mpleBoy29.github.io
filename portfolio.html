@@ -8,47 +8,134 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#ffffff; --surface:#f7f7f9; --text:#0f1720; --muted:#6b6f76; --accent:#0b74de;
+      --surface:#ffffff;
+      --text:#1a1a1a;
+      --muted:#6b6f76;
+      --accent:#6a5acd;
+      --accent-light:#7b68ee;
       --maxw:1000px;
     }
+
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale; line-height:1.5; padding:32px 20px;
+
+    /* ✨ Animasi transisi warna lembut background */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
+
+    body{
+      margin:0;
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      color:var(--text);
+      background: linear-gradient(-45deg, #e8f0ff, #f3e8ff, #ffe8e8, #e8fff3);
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+      line-height:1.5;
+      padding:32px 20px;
+      -webkit-font-smoothing:antialiased;
+      transition: background 2s ease;
+    }
+
     .wrap{max-width:var(--maxw); margin:0 auto}
 
-    header{display:flex; align-items:center; gap:20px; padding:18px; background:var(--surface); border-radius:12px}
-    img.avatar{width:96px; height:96px; border-radius:12px; object-fit:cover;}
-    h1{margin:0; font-size:22px}
+    header{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      padding:22px;
+      background:var(--surface);
+      border-radius:16px;
+      box-shadow:0 4px 15px rgba(0,0,0,0.08);
+      border-left:4px solid var(--accent);
+    }
+
+    img.avatar{
+      width:96px; height:96px;
+      border-radius:12px; object-fit:cover;
+      border:3px solid var(--accent-light);
+    }
+
+    h1{margin:0; font-size:24px; color:var(--accent);}
     p.lead{margin:6px 0 0; color:var(--muted); font-size:14px}
 
-    main{display:grid; grid-template-columns:1fr; gap:18px; margin-top:20px}
-    .card{background:var(--surface); padding:18px; border-radius:12px}
+    main{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+      margin-top:24px;
+    }
+
+    .card{
+      background:var(--surface);
+      padding:18px;
+      border-radius:14px;
+      box-shadow:0 3px 12px rgba(0,0,0,0.07);
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 6px 18px rgba(0,0,0,0.12);
+    }
 
     @media(min-width:900px){
       main{grid-template-columns:1fr 360px}
-      header{padding:22px}
     }
 
-    .section-title{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px}
-    .section-title h2{margin:0; font-size:16px}
+    .section-title{
+      display:flex; justify-content:space-between; align-items:center;
+      margin-bottom:12px; border-bottom:2px solid #eee; padding-bottom:6px;
+    }
+    .section-title h2{
+      margin:0; font-size:17px; color:var(--accent);
+    }
+
     .skills{display:flex; flex-wrap:wrap; gap:8px}
-    .chip{background:white; padding:6px 10px; border-radius:999px; font-size:13px; border:1px solid #e6e9ee}
+    .chip{
+      background:var(--accent-light);
+      color:white;
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:13px;
+      transition:background 0.2s;
+    }
+    .chip:hover{background:var(--accent)}
 
     .edu, .exp{display:flex; flex-direction:column; gap:10px}
-    .item{padding:10px; background:linear-gradient(180deg,rgba(255,255,255,0.7),transparent); border-radius:8px; border:1px solid rgba(0,0,0,0.04)}
-    .item h3{margin:0; font-size:15px}
+    .item{
+      padding:10px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.9),#fafaff);
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,0.05);
+    }
+    .item h3{margin:0; font-size:15px; color:var(--accent)}
     .item small{color:var(--muted)}
 
     .contact-form{display:flex; flex-direction:column; gap:10px}
-    input[type=text], input[type=email], textarea{width:100%; padding:10px; border-radius:8px; border:1px solid #e6e9ee; font-size:14px}
-    button{background:var(--accent); border:0; color:white; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:600}
+    input[type=text], input[type=email], textarea{
+      width:100%; padding:10px;
+      border-radius:8px; border:1px solid #d0d4de;
+      font-size:14px;
+      transition:border-color 0.2s;
+    }
+    input:focus, textarea:focus{border-color:var(--accent-light); outline:none;}
+
+    button{
+      background:var(--accent);
+      border:0; color:white;
+      padding:10px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+      transition:background 0.2s;
+    }
+    button:hover{background:var(--accent-light)}
+
     footer{margin-top:20px; text-align:center; color:var(--muted); font-size:13px}
 
-    .muted{color:var(--muted)}
     a.link{color:var(--accent); text-decoration:none}
+    a.link:hover{text-decoration:underline}
   </style>
 </head>
 <body>
@@ -58,7 +145,13 @@
       <div>
         <h1>Eka Pratama Rudi Putra</h1>
         <p class="lead">Mahasiswa Teknik Elektro — Fokus: Telekomunikasi & Keamanan Jaringan</p>
-        <p class="muted" style="margin-top:8px; font-size:13px">Malang, Indonesia • Email: <a class="link" href="mailto:pratamaeka91283@gmail.com">pratamaeka91283@gmail.com</a></p>
+        <p class="muted" style="margin-top:8px; font-size:13px">
+          Malang, Indonesia • 
+          Email: 
+          <a class="link" href="#" onclick="openGmail('pratamaeka91283@gmail.com')" title="Kirim via Gmail">
+            pratamaeka91283@gmail.com
+          </a>
+        </p>
       </div>
     </header>
 
@@ -69,7 +162,7 @@
           <p>Saya adalah mahasiswa Teknik Elektro Politeknik Negeri Malang dengan fokus pada sistem telekomunikasi dan keamanan jaringan. Minat utama saya adalah penerapan machine learning untuk deteksi dan mitigasi serangan siber, khususnya pada infrastruktur cloud.</p>
         </section>
 
-        <section class="card" style="margin-top:14px">
+        <section class="card">
           <div class="section-title"><h2>Keahlian</h2></div>
           <div class="skills">
             <div class="chip">Analisis Jaringan</div>
@@ -83,22 +176,21 @@
           </div>
         </section>
 
-        <section class="card" style="margin-top:14px">
+        <section class="card">
           <div class="section-title"><h2>Proyek & Publikasi</h2></div>
           <div class="edu">
             <div class="item">
               <h3>Deteksi dan Mitigasi Serangan DDoS pada Infrastruktur Telekomunikasi berbasis Google Cloud</h3>
               <small>2025 — Skripsi / Proyek Penelitian</small>
-              <p style="margin:8px 0 0; font-size:14px" class="muted">Mengembangkan sistem deteksi berbasis machine learning untuk menganalisis trafik VoIP dan mengaktifkan mitigasi otomatis menggunakan firewall di Google Cloud.</p>
+              <p class="muted">Mengembangkan sistem deteksi berbasis machine learning untuk menganalisis trafik VoIP dan mengaktifkan mitigasi otomatis menggunakan firewall di Google Cloud.</p>
             </div>
             <div class="item">
               <h3>Perancangan Link Komunikasi Radio di Wilayah Malang</h3>
               <small>2024 — Proyek Tugas Akhir Praktikum</small>
-              <p class="muted" style="margin-top:6px">Mendesain jaringan microwave dengan tiga tower (UB, Batu, Kepanjen) menggunakan QGIS dan frekuensi 11 GHz untuk evaluasi redaman ruang bebas, redaman hujan, dan fading.</p>
+              <p class="muted">Mendesain jaringan microwave dengan tiga tower (UB, Batu, Kepanjen) menggunakan QGIS dan frekuensi 11 GHz untuk evaluasi redaman ruang bebas, redaman hujan, dan fading.</p>
             </div>
           </div>
         </section>
-
       </div>
 
       <aside>
@@ -107,40 +199,43 @@
           <div class="edu">
             <div class="item">
               <h3>Politeknik Negeri Malang</h3>
-              <small>Teknik Elektro — 2021–now</small>
+              <small>Teknik Elektro — 2021–sekarang</small>
             </div>
             <div class="item">
-              <h3>SMA National Media Center</h3>
+              <h3>SMK National Media Center</h3>
               <small>2019–2022</small>
             </div>
           </div>
         </div>
 
-        <div class="card" style="margin-top:14px">
+        <div class="card">
           <div class="section-title"><h2>Pengalaman</h2></div>
           <div class="exp">
             <div class="item">
               <h3>Magang — CV. Dian's Print</h3>
-              <small>2023</small>
-              <p class="muted" style="margin-top:6px"> Berperan langsung sebagai editor desain produk secara berkala</p>
+              <small>2020-2021</small>
+              <p class="muted">Berperan langsung sebagai editor desain produk secara berkala</p>
             </div>
           </div>
         </div>
 
-        <div class="card" style="margin-top:14px">
+        <div class="card">
           <div class="section-title"><h2>Kontak</h2></div>
           <p class="muted">Kirim pesan cepat menggunakan formulir di bawah ini.</p>
-          <form id="contact" class="contact-form" onsubmit="return sendMail(event)">
+          <form id="contact" class="contact-form" onsubmit="return openGmailFromForm(event)">
             <input type="text" id="name" placeholder="Nama" required>
             <input type="email" id="email" placeholder="Email" required>
             <textarea id="message" rows="4" placeholder="Pesan" required></textarea>
-            <button type="submit">Kirim Pesan</button>
+            <button type="submit">Kirim Pesan via Gmail</button>
           </form>
-          <p style="margin-top:10px; font-size:13px" class="muted">Atau kirim langsung ke: <a class="link" href="mailto:pratamaeka91283@gmail.com">pratamaeka91283@gmail.com</a></p>
+          <p style="margin-top:10px; font-size:13px" class="muted">
+            Atau klik langsung: 
+            <a class="link" href="#" onclick="openGmail('pratamaeka91283@gmail.com')">📧 Buka Gmail</a>
+          </p>
         </div>
 
-        <div class="card" style="margin-top:14px; text-align:center">
-          <a class="link" href="CV Eka Pratama.pdf" download style="display:inline-block; margin-top:6px">Unduh CV / Resume (PDF)</a>
+        <div class="card" style="text-align:center">
+          <a class="link" href="CV Eka Pratama.pdf" download>📄 Unduh CV / Resume (PDF)</a>
         </div>
       </aside>
     </main>
@@ -152,15 +247,20 @@
 
   <script>
     document.getElementById('2025').textContent = new Date().getFullYear();
-    function sendMail(e){
+
+    function openGmail(to, subject = 'Pesan dari Portfolio', body = '') {
+      const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.open(url, '_blank');
+    }
+
+    function openGmailFromForm(e){
       e.preventDefault();
-      const name = encodeURIComponent(document.getElementById('Eka Pratama').value);
-      const email = encodeURIComponent(document.getElementById('pratamaeka91283@gmail.com').value);
-      const message = encodeURIComponent(document.getElementById('message').value);
-      const subject = encodeURIComponent('Pesan dari Portfolio — ' + name);
-      const body = encodeURIComponent('Nama: Eka Pratama' + decodeURIComponent(name) + '\nEmail: pratamaeka91283@gmail.com' + decodeURIComponent(email) + '\n\n') + message;
-      const mailto = `mailto:pratamaeka91283@gmail.com?subject=${subject}&body=${body}`;
-      window.location.href = mailto;
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      const subject = `Pesan dari ${name}`;
+      const body = `Nama: ${name}\nEmail: ${email}\n\nPesan:\n${message}`;
+      openGmail('pratamaeka91283@gmail.com', subject, body);
       return false;
     }
   </script>
